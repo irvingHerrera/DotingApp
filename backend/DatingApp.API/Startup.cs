@@ -28,7 +28,7 @@ namespace DatingApp.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(opt => 
-                opt.UseSqlite("ConnectionString"));
+                opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
         }
 
