@@ -37,7 +37,7 @@ namespace DatingApp.API.Data
                 var compuerHast = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
                 for (int i = 0; i < compuerHast.Length; i++)
                 {
-                    if(compuerHast[1] != passwordSalt[i]) return false;
+                    if(compuerHast[i] != passwordHash[i]) return false;
                 }
             }
 
