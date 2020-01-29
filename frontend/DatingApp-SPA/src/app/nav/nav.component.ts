@@ -33,6 +33,8 @@ export class NavComponent implements OnInit {
       this.userName = this.authService.decodedToken.unique_name;
     }, error => {
       this.alertifyService.error(error);
+    }, () => {
+      this.router.navigate(['/members']);
     });
   }
 
@@ -43,6 +45,7 @@ export class NavComponent implements OnInit {
   logout() {
     localStorage.removeItem('token');
     this.alertifyService.message('logged out');
+    this.router.navigate(['/home']);
   }
 
 }
