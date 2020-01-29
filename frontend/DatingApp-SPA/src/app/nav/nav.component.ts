@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { AlertifyService } from '../service/AlertifyService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -13,7 +14,8 @@ export class NavComponent implements OnInit {
   userName: string;
 
   constructor(private authService: AuthService,
-              private alertifyService: AlertifyService) { }
+              private alertifyService: AlertifyService,
+              private router: Router) { }
 
   ngOnInit() {
     if (this.authService.decodedToken.unique_name) {
