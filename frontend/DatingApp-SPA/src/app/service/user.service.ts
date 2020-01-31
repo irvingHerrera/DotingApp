@@ -15,7 +15,7 @@ const httpOptions = {
 })
 export class UserService {
 
-  baseUrl = environment.apiUrl + 'user/';
+  baseUrl = environment.apiUrl;
 
 constructor(private http: HttpClient) { }
 
