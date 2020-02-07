@@ -27,6 +27,7 @@ import { MemberDetailResolver } from './resolvers/member-detail.resolvers';
 import { MemberListResolver } from './resolvers/member-list.resolvers';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberEditResolver } from './resolvers/member-edit.resolvers';
+import { PreventUnsavedChanges } from './guards/prevent-unsaved-changes.guard';
 
 
 export function tokenGetter() {
@@ -75,6 +76,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberDetailResolver,
       MemberListResolver,
       MemberEditResolver,
+      PreventUnsavedChanges,
       { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
    ],
    bootstrap: [
