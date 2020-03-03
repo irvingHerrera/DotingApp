@@ -15,5 +15,6 @@ export class AppComponent implements OnInit {
     const user: User = JSON.parse(localStorage.getItem('user'));
     this.authService.currentUser = user;
     this.authService.setDecodedToken();
+    this.authService.changeMemberPhoto(user.photoUrl);
   }
 }

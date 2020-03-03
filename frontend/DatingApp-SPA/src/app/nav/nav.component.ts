@@ -25,9 +25,11 @@ export class NavComponent implements OnInit {
 
     if (this.authService.currentUser) {
       this.imgUser = this.authService.currentUser.photoUrl;
+      this.authService.changeMemberPhoto(this.authService.currentUser.photoUrl);
     }
 
-    console.log('this.authService.currentUser.photoUrl', this.authService.currentUser);
+    this.authService.currentPhotoUrl.subscribe(photoUrl => this.imgUser = photoUrl);
+
   }
 
   login() {
