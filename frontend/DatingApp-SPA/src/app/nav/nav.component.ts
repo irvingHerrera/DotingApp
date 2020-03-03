@@ -12,16 +12,22 @@ export class NavComponent implements OnInit {
 
   model: any = {};
   userName: string;
+  imgUser: string;
 
   constructor(private authService: AuthService,
               private alertifyService: AlertifyService,
               private router: Router) { }
 
   ngOnInit() {
-    if (this.authService.decodedToken.unique_name) {
+    if (this.authService.decodedToken) {
       this.userName = this.authService.decodedToken.unique_name;
     }
 
+    if (this.authService.currentUser) {
+      this.imgUser = this.authService.currentUser.photoUrl;
+    }
+
+    console.log('this.authService.currentUser.photoUrl', this.authService.currentUser);
   }
 
   login() {
@@ -31,6 +37,7 @@ export class NavComponent implements OnInit {
       console.log('login', next);
       this.alertifyService.success('Logged in succesfully');
       this.userName = this.authService.decodedToken.unique_name;
+      this.imgUser = this.authService.currentUser.photoUrl;
     }, error => {
       this.alertifyService.error(error);
     }, () => {
@@ -44,6 +51,9 @@ export class NavComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.authService.currentUser = null;
+    this.authService.decodedToken = null;
     this.alertifyService.message('logged out');
     this.router.navigate(['/home']);
   }
