@@ -61,4 +61,8 @@ constructor(private http: HttpClient) { }
     return this.http.delete(`${this.baseUrl}user/${userId}/photos/${id}`);
   }
 
+  seendLike(id: number, recipientId: number) {
+    return this.http.post(`${this.baseUrl}user/${id}/like/${recipientId}`, {});
+  }
+
 }

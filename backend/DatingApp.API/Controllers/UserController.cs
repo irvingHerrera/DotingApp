@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -79,13 +80,14 @@ namespace DatingApp.API.Controllers
         [HttpPost("{id}/like/{recipientId}")]
         public async Task<IActionResult> LikeUser(int id, int recipientId)
         {
+            Debug.Print("like##########");
             if(id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
             {
                 return Unauthorized();
             }
-
+            Debug.Print("like##########");
             var like = await repo.GetLike(id, recipientId);
-
+        
             if(like != null) 
             {
                 return BadRequest("You already like this user");
